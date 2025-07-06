@@ -15,10 +15,14 @@ import {
   Smartphone,
   Globe,
   Play,
-  ExternalLink
+  ExternalLink,
+  Lock,
+  Edit3
 } from 'lucide-react'
 import ToolsSection from '@/components/ToolsSection'
 import RoadmapSection from '@/components/RoadmapSection'
+import Image from 'next/image'
+import { AccordionItem } from '@/components/AccordionItem'
 
 const features = [
   {
@@ -56,7 +60,28 @@ const features = [
     description: "Access to Ubuntu forums, documentation, and community resources for ongoing help.",
     icon: Users,
     color: "from-teal-500 to-green-500"
-  }
+  },
+  {
+    icon: Lock,
+    title: "Rock-Solid Security",
+    description:
+      "Benefit from Linux's robust architecture, making you far less vulnerable to viruses and malware.",
+    color: "bg-purple-700/20 text-purple-400",
+  },
+  {
+    icon: Zap,
+    title: "Blazing Performance",
+    description:
+      "Experience a fast, responsive desktop that breathes new life into old and new hardware.",
+    color: "bg-blue-700/20 text-blue-400",
+  },
+  {
+    icon: Edit3,
+    title: "Total Customization",
+    description:
+      "Take full control of your digital environment, from the look and feel to core functionality.",
+    color: "bg-green-700/20 text-green-400",
+  },
 ]
 
 const testimonials = [
@@ -89,76 +114,72 @@ const stats = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <main className="min-h-screen bg-[#181c27] flex flex-col items-center justify-center pt-12 pb-24">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-        <div className="relative container mx-auto px-4 py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+      <section className="w-full flex flex-col items-center justify-center text-center gap-8 mt-8">
+        <div className="flex flex-col items-center gap-8">
+          {/* Windows to Ubuntu transition */}
+          <div className="flex items-center gap-8 mb-2">
+            <div className="flex flex-col items-center">
+              <span className="text-gray-400 text-2xl font-medium mb-2">Windows</span>
+              <Image src="/windows-logo.svg" alt="Windows Logo" width={70} height={70} className="drop-shadow-lg" />
+            </div>
+            <motion.div
+              initial={{ x: 0 }}
+              animate={{ x: [0, 20, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="text-4xl text-gray-400"
+            >
+              &rarr;
+            </motion.div>
+            <div className="flex flex-col items-center">
+              <span className="text-gray-400 text-2xl font-medium mb-2">Ubuntu</span>
+              <Image src="/ubuntu-logo.svg" alt="Ubuntu Logo" width={70} height={70} className="drop-shadow-lg" />
+            </div>
+          </div>
+          {/* Headline */}
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-2">
+            Your Ultimate Roadmap to <span className="text-purple-400">Ubuntu</span>
+          </h1>
+          {/* Subtitle */}
+          <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mx-auto mb-4">
+            Seamlessly transition from Windows to a world of freedom, performance, and security. This comprehensive guide makes the switch smooth and rewarding.
+          </p>
+          {/* CTA Button */}
+          <motion.a
+            href="#roadmap"
+            whileHover={{ scale: 1.07, boxShadow: "0 8px 32px 0 rgba(124, 58, 237, 0.18)" }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-purple-600 text-white font-semibold text-lg shadow-lg hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-400"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6"
-            >
-              <Star className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm font-medium">The Ultimate Windows to Ubuntu Guide</span>
-            </motion.div>
-            
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              <span className="gradient-text">Windows to Ubuntu</span>
-            </motion.h1>
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-            >
-              Your comprehensive roadmap for seamlessly transitioning from Windows to Ubuntu. 
-              From backup strategies to productivity optimization - we've got you covered.
-            </motion.p>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-            >
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
-                Start Your Journey
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 flex items-center gap-2">
-                <Play className="w-5 h-5" />
-                Watch Demo
-              </button>
-            </motion.div>
+            Start Your Journey
+            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+          </motion.a>
+        </div>
+      </section>
 
-            {/* Stats */}
+      {/* Feature Section */}
+      <section className="w-full max-w-6xl mx-auto mt-24">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Why Make the Switch?</h2>
+        <p className="text-lg text-gray-400 text-center mb-12">Discover the core advantages of the Ubuntu ecosystem.</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((feature, i) => (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
+              key={feature.title}
+              whileHover={{ y: -8, scale: 1.03, boxShadow: "0 12px 48px 0 rgba(124, 58, 237, 0.22)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="rounded-2xl bg-[#202436] p-8 flex flex-col items-center shadow-lg transition-all duration-300 border border-[#23283a] hover:border-purple-600"
             >
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">{stat.number}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              ))}
+              <motion.div
+                whileHover={{ rotate: 8 }}
+                className={`w-16 h-16 flex items-center justify-center rounded-full mb-4 text-3xl ${feature.color} transition-transform duration-300`}
+              >
+                <feature.icon className="w-8 h-8" />
+              </motion.div>
+              <h3 className="text-xl font-bold text-white mb-2 text-center">{feature.title}</h3>
+              <p className="text-gray-300 text-center text-base">{feature.description}</p>
             </motion.div>
-          </motion.div>
+          ))}
         </div>
       </section>
 
@@ -200,10 +221,111 @@ export default function Home() {
       </section>
 
       {/* Roadmap Section */}
-      <RoadmapSection />
+      <section id="roadmap" className="w-full max-w-4xl mx-auto mt-28">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">The Transition Roadmap</h2>
+        <p className="text-lg text-gray-400 text-center mb-12">Your complete, step-by-step guide to migrating from Windows to Ubuntu. Click each phase to expand the details.</p>
+        <div className="flex flex-col gap-6">
+          {[{
+            title: 'Pre-Installation – Preparation is Key',
+            summary: 'This phase is the most critical. Do NOT skip any steps! Proper preparation will prevent data loss and make the installation process significantly smoother.',
+            details: [
+              'Backup All Your Important Data! (Non-Negotiable!)',
+              'Note Down Essential Information',
+              'Create a Windows Recovery Drive (Optional)',
+              'Disable Fast Startup in Windows',
+              'Disable Secure Boot and Enable AHCI Mode (in BIOS/UEFI)',
+              'Download the Ubuntu Desktop ISO File',
+              'Create a Bootable Ubuntu USB Drive',
+            ],
+          }, {
+            title: 'Installation – The Big Switch',
+            summary: 'Boot from the Ubuntu USB drive, try Ubuntu live, and perform the installation with proper configuration.',
+            details: [
+              'Boot from the Ubuntu USB Drive',
+              'Try Ubuntu First (Highly Recommended!)',
+              'Start the Installation Process',
+              'Follow the Installer Steps Carefully',
+            ],
+          }, {
+            title: 'Post-Installation – Initial Setup & Customization',
+            summary: 'Update your system, install drivers, configure accounts, and set up essential applications.',
+            details: [
+              'First Boot & Login',
+              'Connect to the Internet',
+              'Update Your System (Crucial!)',
+              'Install GNOME Tweaks',
+              'Configure Online Accounts',
+              'Install Your Favorite Applications',
+              'Install Proprietary Drivers (If Needed)',
+              'Set Up Backups (Essential for Data Safety!)',
+            ],
+          }, {
+            title: 'Productivity & Workflow Optimization',
+            summary: 'Master shortcuts, customize your desktop, learn terminal basics, and optimize your workflow.',
+            details: [
+              'Master Key Keyboard Shortcuts',
+              'Embrace Workspaces for Organization',
+              'Customize Your Desktop (Optional, but Fun!)',
+              'Get Comfortable with the Terminal',
+              'Explore the Ubuntu Software Center',
+              'Dedicated Productivity Tools',
+            ],
+          }, {
+            title: 'Ongoing Maintenance & Continuous Learning',
+            summary: 'Regular updates, community engagement, and continuous system optimization.',
+            details: [
+              'Regular Updates',
+              'Leverage the Community and Documentation',
+              'Experiment (Carefully!)',
+            ],
+          }].map((phase, idx) => (
+            <AccordionItem key={phase.title} idx={idx} phase={phase} />
+          ))}
+        </div>
+      </section>
 
       {/* Tools Section */}
-      <ToolsSection />
+      <section id="tools" className="w-full max-w-6xl mx-auto mt-28">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">Essential Tools for Every Need</h2>
+        <p className="text-lg text-gray-400 text-center mb-10">Discover powerful, free software to replace your Windows apps and boost your productivity.</p>
+        <div className="flex flex-col md:flex-row gap-4 mb-10 justify-center items-center">
+          <input
+            type="text"
+            placeholder="Search for a tool (e.g., 'GIMP', 'VS Code')..."
+            className="w-full md:w-1/2 px-4 py-3 rounded-lg bg-[#23283a] text-white placeholder-gray-400 border border-[#2d3144] focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <select className="w-full md:w-60 px-4 py-3 rounded-lg bg-[#23283a] text-white border border-[#2d3144] focus:outline-none focus:ring-2 focus:ring-purple-400">
+            <option>All Categories</option>
+            <option>Productivity and Office</option>
+            <option>Design</option>
+            <option>Media</option>
+            <option>Development</option>
+            <option>Communication</option>
+            <option>3D Design</option>
+          </select>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { name: "LibreOffice Suite", category: "Productivity and Office", description: "A complete, free, and open-source office suite, alternative to Microsoft Office." },
+            { name: "Flameshot", category: "Productivity and Office", description: "Superior screenshot tool with on-the-fly annotation, blurring, and highlighting." },
+            { name: "Joplin", category: "Productivity and Office", description: "Secure, open-source note-taking and to-do app with synchronization." },
+            { name: "CopyQ", category: "Productivity and Office", description: "Advanced clipboard manager that saves your clipboard history." },
+            { name: "GIMP", category: "Design", description: "Professional, open-source image editor, alternative to Photoshop." },
+            { name: "Inkscape", category: "Design", description: "Vector graphics editor for illustrations, logos, and diagrams." },
+            { name: "Krita", category: "Design", description: "Digital painting and illustration tool for artists." },
+            { name: "Blender", category: "3D Design", description: "World-class 3D creation suite for modeling, animation, and rendering." },
+          ].map((tool, i) => (
+            <div
+              key={tool.name}
+              className="rounded-2xl bg-[#202436] border border-[#23283a] shadow-lg p-6 hover:border-purple-600 transition-all duration-300 flex flex-col gap-2 card-hover"
+            >
+              <motion.h3 whileHover={{ color: "#a78bfa" }} className="text-lg font-bold text-white mb-1 transition-colors duration-200">{tool.name}</motion.h3>
+              <span className="text-xs font-medium text-purple-400 mb-2">{tool.category}</span>
+              <p className="text-gray-300 text-sm">{tool.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Testimonials Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
@@ -304,6 +426,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   )
 } 
